@@ -3,96 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TURA - Junior Web Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Paleta de la imagen de referencia */
+            --color-white: #FCFCF7;
+            --color-cream: #ECDCAB;
+            --color-gold-light: #DFC57B;
+            --color-gold-mid: #BF932A;
+            --color-bronze: #9E6200;
+            
+            /* Fondos y UI */
+            --bg-main: #18120B;
+            --bg-card: #231B12;
+            --text-primary: #FCFCF7;
+            --text-secondary: #ECDCAB;
+            --text-muted: #A8987E;
+            --border-color: rgba(223, 197, 123, 0.15);
+            --input-bg: #1A130C;
+        }
 
-    <title>NXT | Future Wear</title>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <!-- CSS NXT -->
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/main.css">
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Barra superior informativa de la Paleta */
+        .palette-bar {
+            background: #0E0B07;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .palette-swatches { display: flex; gap: 12px; align-items: center; }
+        .swatch-item { display: flex; align-items: center; gap: 6px; font-family: monospace; font-size: 0.75rem; }
+        .swatch-color { width: 18px; height: 18px; border-radius: 4px; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        /* Estructura de las Secciones (.01, .02, .03) */
+        .preview-frame {
+            background: #1D160E;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin: 40px 0 80px 0;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .section-tag {
+            position: absolute;
+            left: -40px;
+            bottom: 20px;
+            font-family: monospace;
+            color: var(--color-gold-mid);
+            font-size: 0.9rem;
+        }
+
+        /* Navegación */
+        .nav-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 30px; }
+        .logo { font-weight: 800; letter-spacing: 2px; font-size: 1.2rem; color: var(--text-primary); text-transform: uppercase; line-height: 1.1; }
+        .nav-links { display: flex; gap: 24px; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; font-weight: 600; text-transform: uppercase; }
+        .nav-links a:hover { color: var(--color-gold-light); }
+
+        /* Hero (.01) */
+        .hero-body { min-height: 380px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; }
+        .hero-subtitle-top { font-size: 0.75rem; letter-spacing: 3px; color: var(--color-gold-light); text-transform: uppercase; margin-bottom: 12px; }
+        .hero-title { font-size: 4.5rem; font-weight: 800; letter-spacing: 6px; color: var(--text-primary); text-transform: uppercase; line-height: 1; margin-bottom: 12px; }
+        .hero-subtitle-bottom { font-size: 0.7rem; letter-spacing: 4px; color: var(--text-muted); text-transform: uppercase; }
+
+        /* Proyectos (.02) */
+        .project-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px; }
+        .p-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 24px; text-align: center; }
+        .p-card.featured { background: linear-gradient(145deg, #2A1F13, #1A130C); border-color: var(--color-gold-mid); }
+        .project-main-title { font-size: 2.2rem; font-weight: 800; letter-spacing: 4px; text-align: center; color: var(--color-white); margin: 25px 0 12px 0; text-transform: uppercase; }
+        .btn-outline { display: block; margin: 0 auto; padding: 10px 28px; background: transparent; border: 1px solid var(--color-gold-light); color: var(--color-gold-light); font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; cursor: pointer; }
+
+        /* Formulario de Contacto (.03) */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; margin-top: 20px; }
+        .form-card { background: var(--bg-card); border: 1px solid var(--border-color); padding: 30px; border-radius: 8px; }
+        .form-control { width: 100%; background: var(--input-bg); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 4px; color: var(--text-primary); margin-bottom: 16px; outline: none; }
+        .btn-submit { width: 100%; padding: 12px; background: linear-gradient(135deg, var(--color-bronze), var(--color-gold-mid)); border: none; color: var(--color-white); font-weight: 700; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; cursor: pointer; }
+    </style>
 </head>
-
 <body>
-
-<header class="nxt-header">
-
-    <div class="nxt-logo">
-        NXT
-    </div>
-
-    <nav class="nxt-menu">
-        <a href="#">Inicio</a>
-        <a href="#">Colección</a>
-        <a href="#">Tienda</a>
-        <a href="#">Contacto</a>
-    </nav>
-
-
-    <div class="nxt-search">
-        <input 
-        type="search" 
-        placeholder="Buscar productos...">
-
-        <button>
-            🔍
-        </button>
-    </div>
-
-</header>
-
-
-
-<section class="nxt-hero">
-
-    <div class="hero-content">
-
-        <h1>
-            NUEVA ERA.
-            <br>
-            NUEVO ESTILO.
-        </h1>
-
-        <p>
-            Ropa diseñada para quienes buscan
-            evolucionar sin seguir tendencias.
-        </p>
-
-
-        <button class="nxt-button">
-            Explorar colección
-        </button>
-
-    </div>
-
-
-    <div class="hero-image">
-
-        <div class="product-preview">
-            NXT
-        </div>
-
-    </div>
-
-
-</section>
-
-
-
-
-<section class="nxt-products">
-
-
-<h2>
-Colección destacada
-</h2>
-
-
-<div class="product-grid">
-
-
-<div class="card">
-    <h3>
-    Oversize Black
-    </h3>
+    <!-- Secciones .01, .02 y .03 integradas -->
+</body>
+</html>
 
     <p>
     Minimal Edition
