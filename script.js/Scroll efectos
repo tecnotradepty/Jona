@@ -1,1 +1,19 @@
+// ==========================================
+// LÓGICA INTERACTIVA DE PARALLAX Y BRILLO
+// ==========================================
 
+const imagenFondo = document.querySelector('.imagen-fondo');
+const brillo = document.querySelector('.brillo');
+
+window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const alturaVentana = window.innerHeight;
+
+    // Ajuste dinámico de Parallax
+    const factorParallax = scrollY * 0.4;
+    imagenFondo.style.transform = `translateY(${factorParallax}px)`;
+
+    // Efecto de Brillo progresivo según el scroll
+    const opacidadBrillo = Math.min(1, scrollY / (alturaVentana * 0.8));
+    brillo.style.opacity = opacidadBrillo;
+});
