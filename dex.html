@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kiosco Gastronómico Panameño - Menú Regional</title>
+  <title>Kiosco Gastronómico Panameño - Menú & Reseñas</title>
   <style>
     :root {
       --gold-gradient: linear-gradient(135deg, #e6c875 0%, #d4af37 50%, #aa7c11 100%);
@@ -38,7 +38,7 @@
       overflow-x: hidden;
     }
 
-    /* Top Bar Header */
+    /* Header */
     header {
       padding: 1.2rem 2rem;
       background: rgba(15, 17, 21, 0.9);
@@ -63,7 +63,6 @@
       letter-spacing: 1px;
     }
 
-    /* Dynamic Menu Controls */
     .controls {
       display: flex;
       gap: 1rem;
@@ -71,31 +70,13 @@
       flex-wrap: wrap;
     }
 
-    .search-box input {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--card-border);
-      padding: 0.6rem 1.2rem;
-      border-radius: 20px;
-      color: #fff;
-      outline: none;
-      width: 200px;
-      transition: all 0.3s ease;
-    }
-
-    .search-box input:focus {
-      border-color: #d4af37;
-      width: 240px;
-    }
-
-    /* Region Selector Dropdown & Preferential Toggle */
-    .filter-select {
+    .search-box input, .filter-select {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid var(--card-border);
       color: #fff;
       padding: 0.6rem 1rem;
       border-radius: 20px;
       outline: none;
-      cursor: pointer;
       font-size: 0.9rem;
     }
 
@@ -150,21 +131,23 @@
       border-color: transparent;
     }
 
-    /* Menu Grid Container */
+    /* Layout Main */
     .container {
       padding: 2rem;
       max-width: 1400px;
       margin: 0 auto;
       flex: 1;
+      width: 100%;
     }
 
     .grid-menu {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.5rem;
+      margin-bottom: 3rem;
     }
 
-    /* Product Card with Liquid Gold & Pastel details */
+    /* Product Card */
     .card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -185,21 +168,14 @@
       position: relative;
       width: 100%;
       height: 180px;
-      overflow: hidden;
     }
 
     .card-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
     }
 
-    .card:hover .card-img {
-      transform: scale(1.08);
-    }
-
-    /* Badges */
     .chip {
       position: absolute;
       top: 12px;
@@ -210,8 +186,6 @@
       font-weight: 700;
       color: var(--pastel-text);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
 
     .region-badge {
@@ -225,7 +199,6 @@
       border-radius: 8px;
       font-size: 0.7rem;
       font-weight: 600;
-      backdrop-filter: blur(4px);
     }
 
     .star-preferencial {
@@ -237,7 +210,6 @@
       padding: 0.25rem 0.5rem;
       border-radius: 50%;
       font-size: 0.8rem;
-      font-weight: bold;
     }
 
     .chip-pink { background-color: var(--pastel-pink); }
@@ -272,7 +244,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: auto;
       padding-top: 0.8rem;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
@@ -293,12 +264,141 @@
       border-radius: 20px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
     }
 
     .add-btn:hover {
       background: var(--gold-gradient);
       color: #000;
+    }
+
+    /* SECCIÓN DE COMENTARIOS Y RESEÑAS */
+    .comments-section {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #d4af37;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .comments-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 850px) {
+      .comments-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Formulario */
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .form-control {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      padding: 0.7rem;
+      border-radius: 8px;
+      color: #fff;
+      outline: none;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .submit-btn {
+      background: var(--gold-gradient);
+      color: #000;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .submit-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Comentarios Feed */
+    .comments-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+
+    .comment-card {
+      background: rgba(255, 255, 255, 0.04);
+      border-left: 3px solid #d4af37;
+      padding: 1rem;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .comment-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+    }
+
+    .comment-author {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+    }
+
+    .comment-dish {
+      font-size: 0.75rem;
+      background: rgba(212, 175, 55, 0.2);
+      color: #e6c875;
+      padding: 0.1rem 0.5rem;
+      border-radius: 10px;
+    }
+
+    .comment-stars {
+      color: #ffd700;
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .comment-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
     }
 
     footer {
@@ -353,64 +453,76 @@
     <button class="cat-btn" onclick="filterCategory('Bebidas', this)">Bebidas Tradicionales</button>
   </nav>
 
-  <!-- Main Menu Grid -->
+  <!-- Main Grid & Comments -->
   <main class="container">
-    <div class="grid-menu" id="menuGrid">
-      <!-- Platos cargados dinámicamente -->
-    </div>
+    <div class="grid-menu" id="menuGrid"></div>
+
+    <!-- Sección de Comentarios Integrada -->
+    <section class="comments-section">
+      <h2 class="section-title">💬 Comentarios & Reseñas Populares</h2>
+      <div class="comments-grid">
+        
+        <!-- Formulario para agregar comentarios -->
+        <form class="comment-form" onsubmit="agregarComentario(event)">
+          <div class="form-group">
+            <label for="userName">Tu Nombre:</label>
+            <input type="text" id="userName" class="form-control" placeholder="Ej. Carlos de David" required>
+          </div>
+          <div class="form-group">
+            <label for="dishSelect">Selecciona el Plato:</label>
+            <select id="dishSelect" class="form-control" required></select>
+          </div>
+          <div class="form-group">
+            <label for="starRating">Calificación:</label>
+            <select id="starRating" class="form-control">
+              <option value="5">⭐⭐⭐⭐⭐ (Excelente)</option>
+              <option value="4">⭐⭐⭐⭐ (Muy Bueno)</option>
+              <option value="3">⭐⭐⭐ (Bueno)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="commentText">Tu Reseña:</label>
+            <textarea id="commentText" class="form-control" placeholder="¿Qué tal estuvo el sazón?" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Publicar Comentario</button>
+        </form>
+
+        <!-- Lista de Comentarios Populares -->
+        <div class="comments-feed" id="commentsFeed"></div>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <p>Kiosco Interactivo • Base Oficial con Selección Preferencial y Gastronomía Por Provincias/Comarcas</p>
+    <p>Kiosco Interactivo • Base Oficial con Selección Preferencial, Regiones y Comentarios de la Comunidad</p>
   </footer>
 
   <script>
-    // Base de Datos de 30 Platos Típicos Panameños asociados a su Provincias/Comarcas y Tag Preferencial
+    // 1. Base de Datos de Platos
     const platosPanama = [
-      // Desayunos & Frituras
       { id: 1, nombre: "Hojaldra con Queso Blanco", cat: "Desayunos", provincia: "Panamá", preferencial: true, chip: "chip-cream", tag: "Tradicional", desc: "Masa frita esponjosa acompañada de suave queso blanco artesanal.", precio: "$4.50", img: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80" },
       { id: 2, nombre: "Carimañolas de Carne", cat: "Desayunos", provincia: "Coclé", preferencial: true, chip: "chip-pink", tag: "Entrada", desc: "Fritura de yuca suave rellena de carne picada sazonada al estilo criollo.", precio: "$5.00", img: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80" },
-      { id: 3, nombre: "Empanadas de Maíz con Queso", cat: "Desayunos", provincia: "Veraguas", preferencial: false, chip: "chip-cream", tag: "Clásico", desc: "Empanadas de maíz pilado fritas y crujientes, rellenas de queso meloso.", precio: "$4.00", img: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=600&q=80" },
-      { id: 4, nombre: "Tortilla de Maíz con Chicharrón", cat: "Desayunos", provincia: "Herrera", preferencial: true, chip: "chip-pink", tag: "Típico", desc: "Gruesa tortilla de maíz asada acompañada de crujiente chicharrón de cerdo.", precio: "$6.50", img: "https://images.unsplash.com/photo-1541518763669-27fef04b14e8?auto=format&fit=crop&w=600&q=80" },
-      { id: 5, nombre: "Bollos de Maíz Nuevo", cat: "Desayunos", provincia: "Los Santos", preferencial: false, chip: "chip-cream", tag: "Artesanal", desc: "Masa de maíz tierno dulce cocida en hoja de caña, servida con mantequilla.", precio: "$3.50", img: "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=600&q=80" },
-      { id: 6, nombre: "Tasajo Frito con Yuca", cat: "Desayunos", provincia: "Chiriquí", preferencial: true, chip: "chip-pink", tag: "Criollo", desc: "Carne de res ahumada y frita, servida con yuca al vapor o frita.", precio: "$8.50", img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" },
-      { id: 7, nombre: "Torrejitas de Maíz Nuevo", cat: "Desayunos", provincia: "Coclé", preferencial: false, chip: "chip-cream", tag: "Dulce/Salado", desc: "Frituras de maíz tierno levemente endulzadas, crujientes por fuera.", precio: "$4.50", img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80" },
-      { id: 8, nombre: "Chorizo de Las Tablas", cat: "Desayunos", provincia: "Los Santos", preferencial: true, chip: "chip-pink", tag: "Auténtico", desc: "Chorizo de cerdo artesanal ahumado con caña de azúcar y especias.", precio: "$7.00", img: "https://images.unsplash.com/photo-1597289124948-688c1a35cb48?auto=format&fit=crop&w=600&q=80" },
+      { id: 3, nombre: "Tortilla con Chicharrón", cat: "Desayunos", provincia: "Herrera", preferencial: true, chip: "chip-pink", tag: "Típico", desc: "Gruesa tortilla de maíz asada acompañada de crujiente chicharrón.", precio: "$6.50", img: "https://images.unsplash.com/photo-1541518763669-27fef04b14e8?auto=format&fit=crop&w=600&q=80" },
+      { id: 4, nombre: "Sancocho Panameño", cat: "Platos Fuertes", provincia: "Herrera", preferencial: true, chip: "chip-pink", tag: "Sopa Insignia", desc: "Sopa tradicional con gallina dura, ñame, culantro fresco y arroz.", precio: "$12.00", img: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80" },
+      { id: 5, nombre: "Ropa Vieja con Arroz de Coco", cat: "Platos Fuertes", provincia: "Colón", preferencial: true, chip: "chip-pink", tag: "Favorito", desc: "Carne deshilachada en salsa criolla servida con arroz de coco.", precio: "$14.50", img: "https://images.unsplash.com/photo-1588168333986-5078d3ae3976?auto=format&fit=crop&w=600&q=80" },
+      { id: 6, nombre: "Pescado Frito con Patacones", cat: "Mariscos", provincia: "Colón", preferencial: true, chip: "chip-peach", tag: "Afroantillano", desc: "Pargo rojo frito y sazonado, acompañado de patacones crocantes.", precio: "$18.00", img: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80" },
+      { id: 7, nombre: "Ceviche de Corvina", cat: "Mariscos", provincia: "Panamá", preferencial: true, chip: "chip-peach", tag: "Fresco", desc: "Corvina marinada en limón criollo, cebolla, ají chombo y galletas.", precio: "$9.50", img: "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=600&q=80" },
+      { id: 8, nombre: "Pesada de Nance", cat: "Postres", provincia: "Herrera", preferencial: true, chip: "chip-lavender", tag: "Autóctono", desc: "Crema agridulce de nance con raspadura y queso blanco espolvoreado.", precio: "$5.50", img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80" },
+      { id: 9, nombre: "Chicheme Chorrerano", cat: "Bebidas", provincia: "Panamá Oeste", preferencial: true, chip: "chip-cream", tag: "Ícono", desc: "Bebida cremosa de maíz pilado, leche, vainilla y canela helada.", precio: "$4.00", img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80" }
+    ];
 
-      // Platos Fuertes
-      { id: 9, nombre: "Sancocho Panameño de Gallina", cat: "Platos Fuertes", provincia: "Herrera", preferencial: true, chip: "chip-pink", tag: "Sopa Insignia", desc: "Sopa tradicional con gallina dura, ñame, culantro fresco y arroz blanco.", precio: "$12.00", img: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80" },
-      { id: 10, nombre: "Ropa Vieja con Arroz con Coco", cat: "Platos Fuertes", provincia: "Colón", preferencial: true, chip: "chip-pink", tag: "Favorito", desc: "Carne de res deshilachada en salsa de tomate y vegetales con arroz de coco.", precio: "$14.50", img: "https://images.unsplash.com/photo-1588168333986-5078d3ae3976?auto=format&fit=crop&w=600&q=80" },
-      { id: 11, nombre: "Arroz con Guandú y Pork Belly", cat: "Platos Fuertes", provincia: "Panamá Oeste", preferencial: false, chip: "chip-pink", tag: "Festivo", desc: "Arroz con guandú oloroso y trozos jugosos de panceta de cerdo tostada.", precio: "$15.00", img: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=80" },
-      { id: 12, nombre: "Lengua de Res en Salsa Criolla", cat: "Platos Fuertes", provincia: "Veraguas", preferencial: false, chip: "chip-pink", tag: "Especialidad", desc: "Suave lengua de res cocinada a fuego lento en reducción de ajíes y tomate.", precio: "$16.00", img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" },
-      { id: 13, nombre: "Gallina Guisada Interiorana", cat: "Platos Fuertes", provincia: "Los Santos", preferencial: false, chip: "chip-pink", tag: "Casero", desc: "Gallina criolla en jugo concentrado de achiote, cebolla y pimientos.", precio: "$13.00", img: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80" },
-      { id: 14, nombre: "Mondongo a la Panameña", cat: "Platos Fuertes", provincia: "Panamá", preferencial: false, chip: "chip-pink", tag: "Tradición", desc: "Guisado de mondongo con garbanzos, chorizo y vegetales en salsa colorada.", precio: "$11.50", img: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80" },
-
-      // Mariscos
-      { id: 15, nombre: "Pescado Frito con Patacones", cat: "Mariscos", provincia: "Colón", preferencial: true, chip: "chip-peach", tag: "Afroantillano", desc: "Pargo rojo entero frito y sazonado, acompañado de patacones crocantes.", precio: "$18.00", img: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80" },
-      { id: 16, nombre: "Ceviche de Corvina", cat: "Mariscos", provincia: "Panamá", preferencial: true, chip: "chip-peach", tag: "Fresco", desc: "Corvina marinada en limón criollo, cebolla morada, ají chombo y galletas.", precio: "$9.50", img: "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=600&q=80" },
-      { id: 17, nombre: "Camarones al Ajillo", cat: "Mariscos", provincia: "Chiriquí", preferencial: false, chip: "chip-peach", tag: "Pacífico", desc: "Camarones salteados en abundante ajo, mantequilla y vino blanco.", precio: "$17.50", img: "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=600&q=80" },
-      { id: 18, nombre: "Pulpo al Curry Estilo Colón", cat: "Mariscos", provincia: "Bocas del Toro", preferencial: true, chip: "chip-peach", tag: "Caribeño", desc: "Pulpo tierno cocinado en crema de coco, curry aromático y especias.", precio: "$19.00", img: "https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=600&q=80" },
-      { id: 19, nombre: "Ceviche de Langosta estilo Guna", cat: "Mariscos", provincia: "Comarca Guna Yala", preferencial: true, chip: "chip-green", tag: "Comarcas", desc: "Fresca langosta marinada con toque de coco y ají chombo autóctono.", precio: "$21.00", img: "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=600&q=80" },
-      { id: 20, nombre: "Rondón de Mariscos con Yuca", cat: "Mariscos", provincia: "Darién", preferencial: false, chip: "chip-peach", tag: "Afrocaribeño", desc: "Sopa sustanciosa de pescado y mariscos en leche de coco con yuca y plátano.", precio: "$16.50", img: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80" },
-
-      // Postres
-      { id: 21, nombre: "Sopa de Gloria", cat: "Postres", provincia: "Los Santos", preferencial: false, chip: "chip-lavender", tag: "Antiguo", desc: "Postre de bizcocho remojado en almíbar de ron, canela y frutas confitadas.", precio: "$6.00", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" },
-      { id: 22, nombre: "Pesada de Nance con Queso", cat: "Postres", provincia: "Herrera", preferencial: true, chip: "chip-lavender", tag: "Autóctono", desc: "Crema agridulce de nance cocida con raspadura, servida con queso blanco.", precio: "$5.50", img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80" },
-      { id: 23, nombre: "Tres Leches Panameño", cat: "Postres", provincia: "Panamá", preferencial: false, chip: "chip-lavender", tag: "Dulce", desc: "Bizcocho húmedo embebido en tres leches con merengue flameado.", precio: "$6.50", img: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=600&q=80" },
-      { id: 24, nombre: "Cocadas con Raspadura", cat: "Postres", provincia: "Coclé", preferencial: false, chip: "chip-lavender", tag: "Artesanal", desc: "Dulces horneados de coco rallado con miel de caña / raspadura pura.", precio: "$3.50", img: "https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=600&q=80" },
-      { id: 25, nombre: "Plátano en Tentación", cat: "Postres", provincia: "Veraguas", preferencial: true, chip: "chip-lavender", tag: "Clásico", desc: "Plátanos maduros horneados en almíbar de raspadura, canela y mantequilla.", precio: "$4.50", img: "https://images.unsplash.com/photo-1603046891726-36bfd957e0bf?auto=format&fit=crop&w=600&q=80" },
-
-      // Bebidas
-      { id: 26, nombre: "Chicha de Piña con Arroz", cat: "Bebidas", provincia: "Panamá", preferencial: false, chip: "chip-cream", tag: "Refrescante", desc: "Bebida helada de cáscara de piña cocida con arroz y endulzada con raspadura.", precio: "$3.00", img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80" },
-      { id: 27, nombre: "Resbaladera Chiricana", cat: "Bebidas", provincia: "Chiriquí", preferencial: false, chip: "chip-cream", tag: "Tradicional", desc: "Bebida artesanal de cebada, arroz, leche, vainilla y un toque de canela.", precio: "$3.50", img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80" },
-      { id: 28, nombre: "Chicha de Saril con Jengibre", cat: "Bebidas", provincia: "Colón", preferencial: true, chip: "chip-cream", tag: "Temporada", desc: "Infusión fría de flor de Jamaica/Saril con jengibre fresco picante.", precio: "$3.50", img: "https://images.unsplash.com/photo-1546171753-97d7676e4182?auto=format&fit=crop&w=600&q=80" },
-      { id: 29, nombre: "Chicheme Chorrerano", cat: "Bebidas", provincia: "Panamá Oeste", preferencial: true, chip: "chip-cream", tag: "Ícono", desc: "Bebida cremosa de maíz pilado cocido, leche, vainilla y canela helada.", precio: "$4.00", img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80" },
-      { id: 30, nombre: "Cacao Tradicional Ngäbe", cat: "Bebidas", provincia: "Comarca Ngäbe-Buglé", preferencial: false, chip: "chip-green", tag: "Ancestral", desc: "Bebida artesanal de cacao purísimo tostado a la leña con especias.", precio: "$4.50", img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=600&q=80" }
+    // 2. Comentarios Populares Iniciales
+    const comentariosPopulares = [
+      { autor: "María G. (La Chorrera)", plato: "Chicheme Chorrerano", estrellas: 5, texto: "¡El mejor chicheme de todo Panamá Oeste! Dulce en su punto exacto y bien frío." },
+      { autor: "José L. (Chitré)", plato: "Sancocho Panameño", estrellas: 5, texto: "Sabe exactamente al que hace mi abuela en el interior. El toque de culantro es perfecto." },
+      { autor: "Yarielis N. (Colón)", plato: "Pescado Frito con Patacones", estrellas: 5, texto: "El pargo super crujiente por fuera y jugoso por dentro. Los patacones bien tostados." },
+      { autor: "Esteban M. (Chiriquí)", plato: "Hojaldra con Queso Blanco", estrellas: 4, texto: "La masa es sumamente suave y no queda aceitosa. Recomendada para el desayuno." }
     ];
 
     let activeCategory = 'Todos';
     let onlyPreferencial = false;
 
+    // Renderizar Menú
     function renderMenu(items) {
       const grid = document.getElementById('menuGrid');
       grid.innerHTML = '';
@@ -426,7 +538,7 @@
         card.innerHTML = `
           <div class="card-img-wrapper">
             <span class="chip ${item.chip}">${item.tag}</span>
-            ${item.preferencial ? '<span class="star-preferencial" title="Muy Buscado por Panameños">⭐</span>' : ''}
+            ${item.preferencial ? '<span class="star-preferencial">⭐</span>' : ''}
             <img src="${item.img}" alt="${item.nombre}" class="card-img" loading="lazy">
             <span class="region-badge">📍 ${item.provincia}</span>
           </div>
@@ -443,6 +555,57 @@
       });
     }
 
+    // Renderizar Comentarios Feed
+    function renderComentarios() {
+      const feed = document.getElementById('commentsFeed');
+      feed.innerHTML = '';
+
+      comentariosPopulares.forEach(c => {
+        const div = document.createElement('div');
+        div.className = 'comment-card';
+        div.innerHTML = `
+          <div class="comment-header">
+            <span class="comment-author">${c.autor}</span>
+            <span class="comment-dish">${c.plato}</span>
+          </div>
+          <div class="comment-stars">${'⭐'.repeat(c.estrellas)}</div>
+          <p class="comment-text">"${c.texto}"</p>
+        `;
+        feed.appendChild(div);
+      });
+    }
+
+    // Cargar Lista de Platos en el Select del Formulario
+    function loadDishOptions() {
+      const select = document.getElementById('dishSelect');
+      select.innerHTML = '';
+      platosPanama.forEach(p => {
+        const option = document.createElement('option');
+        option.value = p.nombre;
+        option.textContent = `${p.nombre} (${p.provincia})`;
+        select.appendChild(option);
+      });
+    }
+
+    // Agregar Comentario
+    function agregarComentario(e) {
+      e.preventDefault();
+      const autor = document.getElementById('userName').value;
+      const plato = document.getElementById('dishSelect').value;
+      const estrellas = parseInt(document.getElementById('starRating').value);
+      const texto = document.getElementById('commentText').value;
+
+      // Insertar al inicio de la lista
+      comentariosPopulares.unshift({ autor, plato, estrellas, texto });
+      renderComentarios();
+
+      // Limpiar formulario
+      document.getElementById('userName').value = '';
+      document.getElementById('commentText').value = '';
+      alert('¡Gracias! Tu comentario ha sido publicado.');
+    }
+
+    // Filtros
     function filterCategory(cat, btn) {
       activeCategory = cat;
       document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
@@ -452,12 +615,7 @@
 
     function togglePreferencial() {
       onlyPreferencial = !onlyPreferencial;
-      const btn = document.getElementById('btnPreferencial');
-      if (onlyPreferencial) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
+      document.getElementById('btnPreferencial').classList.toggle('active', onlyPreferencial);
       applyFilters();
     }
 
@@ -477,8 +635,10 @@
       renderMenu(filtered);
     }
 
-    // Inicializar menú completo al cargar
+    // Inicialización
     renderMenu(platosPanama);
+    renderComentarios();
+    loadDishOptions();
   </script>
 </body>
 </html>
