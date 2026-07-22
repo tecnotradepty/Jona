@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Liquid & Soft Pastels - Interfaz para Restaurante</title>
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* =========================================================
+           PALETA DE COLORES: LIQUID GOLD & SOFT PASTELS
+           ========================================================= */
+        :root {
+            /* Colores Base y Fondos Oscuros Elegantes */
+            --bg-dark: #0f0d13;
+            --bg-card: rgba(26, 22, 33, 0.75);
+            
+            /* Gradiente Oro Líquido Fluido */
+            --liquid-gold-grad: linear-gradient(135deg, #fff3a7 0%, #f3ce6d 25%, #c59b27 50%, #fbe389 75%, #a47c16 100%);
+            --liquid-gold-soft: linear-gradient(135deg, rgba(243, 206, 109, 0.15) 0%, rgba(197, 155, 39, 0.05) 100%);
+            --gold-glow: rgba(243, 206, 109, 0.35);
+            --gold-accent: #f3ce6d;
+            
+            /* Colores Pastel Suaves */
+            --pastel-rose: #fce1e4;
+            --pastel-mint: #e8f5e9;
+            --pastel-cream: #fff9e6;
+            --pastel-peach: #ffe5d9;
+            --pastel-lavender: #f3e8ff;
+            
+            /* Textos */
+            --text-primary: #fbfbfb;
+            --text-secondary: #c4c0cd;
+            --text-dark: #1a1621;
+            
+            /* Bordes y Vidrio */
+            --glass-border: linear-gradient(135deg, rgba(243, 206, 109, 0.6) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(197, 155, 39, 0.4) 100%);
+            --radius-main: 24px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(243, 206, 109, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(252, 225, 228, 0.05) 0%, transparent 45%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Contenedor Principal Estilo Tablet / Kiosco */
+        .app-container {
+            width: 100%;
+            max-width: 1200px;
+            background: rgba(18, 15, 23, 0.85);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-main);
+            border: 1px solid rgba(243, 206, 109, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(243, 206, 109, 0.1);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            overflow: hidden;
+        }
+
+        /* =========================================================
+           HEADER & NAVEGACIÓN
+           ========================================================= */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 28px;
+            background: rgba(26, 22, 33, 0.8);
+            border-radius: 50px;
+            border: 1px solid rgba(243, 206, 109, 0.25);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--liquid-gold-grad);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            box-shadow: 0 0 15px var(--gold-glow);
+        }
+
+        .brand-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            background: var(--liquid-gold-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+        }
+
+        .nav-item button {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 12px 22px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-item.active button, .nav-item button:hover {
+            color: var(--text-dark);
+            background: var(--liquid-gold-grad);
+            box-shadow: 0 0 20px var(--gold-glow), inset 0 0 8px rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
+        }
+
+        /* =========================================================
+           BARRA DE BÚSQUEDA Y FILTROS PASTEL
+           ========================================================= */
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin: 10px 0;
+        }
+
+        .search-box-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            padding: 2px;
+            border-radius: 50px;
+            background: var(--liquid-gold-grad);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #14111a;
+            border-radius: 50px;
+            padding: 6px 12px 6px 24px;
+        }
+
+        .search-input {
+            width: 100%;
+            border: none;
+            background: transparent;
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            outline: none;
+            padding: 8px 0;
+        }
+
+        .search-input::placeholder {
+            color: rgba(196, 192, 205, 0.5);
+        }
+
+        .search-btn {
+            background: var(--liquid-gold-grad);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            box-shadow: 0 0 10px var(--gold-glow);
+        }
+
+        .search-btn:hover {
+            transform: scale(1.08);
+        }
+
+        /* Chips / Categorías en Tonos Pastel */
+        .category-chips {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 5px 0 10px 0;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .chip {
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #2a2438;
+        }
+
+        .chip-all { background: var(--liquid-gold-grad); color: var(--text-dark); }
+        .chip-pink { background: var(--pastel-rose); }
+        .chip-mint { background: var(--pastel-mint); }
+        .chip-peach { background: var(--pastel-peach); }
+        .chip-cream { background: var(--pastel-cream); }
+        .chip-lavender { background: var(--pastel-lavender); }
+
+        .chip:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        /* =========================================================
+           SECCIONES DE CONTENIDO
+           ========================================================= */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 0.5px;
+        }
+
+        .badge-gold {
+            background: var(--liquid-gold-grad);
+            color: var(--text-dark);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        /* =========================================================
+           ZONA DE SUGERENCIAS / TARJETAS DE PLATOS
+           ========================================================= */
+        .suggestions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .dish-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            position: relative;
+            padding: 2px;
+            background-image: linear-gradient(135deg, rgba(243, 206, 109, 0.4) 0%, rgba(255,255,255,0.05) 50%, rgba(243, 206, 109, 0.1) 100%);
+            transition: all 0.3s ease;
+        }
+
+        .dish-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(243, 206, 109, 0.2);
+        }
+
+        .dish-card-inner {
+            background: #16121d;
+            border-radius: 18px;
+            padding: 18px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dish-img-container {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .dish-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .dish-card:hover .dish-img {
+            transform: scale(1.05);
+        }
+
+        /* Tags Pastel sobre la foto */
+        .dish-tag-pastel {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #2a2438;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .tag-rose { background: var(--pastel-rose); }
+        .tag-mint { background: var(--pastel-mint); }
+        .tag-peach { background: var(--pastel-peach); }
+
+        .dish-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .dish-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .dish-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 12px;
+        }
+
+        .dish-price {
+            font-size: 1.3rem;
+            font-weight: 800;
+            background: var(--liquid-gold-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-gold-action {
+            background: var(--liquid-gold-grad);
+            color: var(--text-dark);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px var(--gold-glow);
+        }
+
+        .btn-gold-action:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 18px var(--gold-glow);
+        }
+
+        /* =========================================================
+           SECCIONES SECUNDARIAS (Búsqueda, Ayuda, Contacto)
+           ========================================================= */
+        .panel-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(243, 206, 109, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .help-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .help-card:hover {
+            border-color: var(--gold-accent);
+            background: rgba(243, 206, 109, 0.05);
+            transform: translateY(-4px);
+        }
+
+        .help-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            color: var(--gold-accent);
+        }
+
+        .form-group { margin-bottom: 18px; }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 12px 18px;
+            background: rgba(15, 13, 19, 0.8);
+            border: 1px solid rgba(243, 206, 109, 0.3);
+            border-radius: 12px;
+            color: var(--text-primary);
+            outline: none;
+            font-size: 0.95rem;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            border-color: var(--gold-accent);
+            box-shadow: 0 0 10px var(--gold-glow);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- NAVEGACIÓN -->
+        <nav class="navbar">
+            <div class="brand-logo">
+                <div class="logo-icon"><i class="fa-solid fa-utensils"></i></div>
+                <span class="brand-title">AURA DINING</span>
+            </div>
+            <ul class="nav-links">
+                <li class="nav-item active" onclick="switchTab('menu', this)">
+                    <button><i class="fa-solid fa-book-open"></i> Menú</button>
+                </li>
+                <li class="nav-item" onclick="switchTab('busqueda', this)">
+                    <button><i class="fa-solid fa-magnifying-glass"></i> Búsqueda</button>
+                </li>
+                <li class="nav-item" onclick="switchTab('ayuda', this)">
+                    <button><i class="fa-solid fa-headset"></i> Ayuda</button>
+                </li>
+                <li class="nav-item" onclick="switchTab('contactanos', this)">
+                    <button><i class="fa-solid fa-envelope"></i> Contáctanos</button>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- SECCIÓN: MENÚ -->
+        <div id="tab-menu" class="content-section active">
+            
+            <div class="search-container">
+                <div class="search-box-wrapper">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Buscar platillos, cocteles o ingredientes...">
+                        <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </div>
+
+                <div class="category-chips">
+                    <button class="chip chip-all"><i class="fa-solid fa-star"></i> Todos</button>
+                    <button class="chip chip-pink"><i class="fa-solid fa-drumstick-bite"></i> Carnes</button>
+                    <button class="chip chip-mint"><i class="fa-solid fa-leaf"></i> Vegano</button>
+                    <button class="chip chip-peach"><i class="fa-solid fa-fish"></i> Mariscos</button>
+                    <button class="chip chip-cream"><i class="fa-solid fa-martini-glass-citrus"></i> Bebidas</button>
+                    <button class="chip chip-lavender"><i class="fa-solid fa-ice-cream"></i> Postres</button>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>Sugerencias del Chef</h2>
+                <span class="badge-gold">Exclusivos</span>
+            </div>
+
+            <div class="suggestions-grid">
+                
+                <div class="dish-card">
+                    <div class="dish-card-inner">
+                        <div class="dish-img-container">
+                            <span class="dish-tag-pastel tag-peach">Plato Fuerte</span>
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="Tomahawk" class="dish-img">
+                        </div>
+                        <h3 class="dish-title">Tomahawk en Mantequilla Dorada</h3>
+                        <p class="dish-desc">Corte madurado bañado en mantequilla clarificada de hierbas aromáticas y sal marina fina.</p>
+                        <div class="dish-footer">
+                            <span class="dish-price">$45.00</span>
+                            <button class="btn-gold-action"><i class="fa-solid fa-plus"></i> Ordenar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dish-card">
+                    <div class="dish-card-inner">
+                        <div class="dish-img-container">
+                            <span class="dish-tag-pastel tag-mint">Orgánico</span>
+                            <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80" alt="Risotto" class="dish-img">
+                        </div>
+                        <h3 class="dish-title">Risotto Azafrán & Mariscos</h3>
+                        <p class="dish-desc">Arroz arborio infusionado con azafrán de oro, langostinos al ajillo y brotes frescos.</p>
+                        <div class="dish-footer">
+                            <span class="dish-price">$32.00</span>
+                            <button class="btn-gold-action"><i class="fa-solid fa-plus"></i> Ordenar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dish-card">
+                    <div class="dish-card-inner">
+                        <div class="dish-img-container">
+                            <span class="dish-tag-pastel tag-rose">Postre Especial</span>
+                            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Postre" class="dish-img">
+                        </div>
+                        <h3 class="dish-title">Esfera de Chocolate Oro</h3>
+                        <p class="dish-desc">Rellena de mousse de avellana y frutos rojos con baño de caramelo líquido tibio.</p>
+                        <div class="dish-footer">
+                            <span class="dish-price">$16.00</span>
+                            <button class="btn-gold-action"><i class="fa-solid fa-plus"></i> Ordenar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SECCIÓN: BÚSQUEDA -->
+        <div id="tab-busqueda" class="content-section">
+            <div class="panel-box">
+                <div class="section-header">
+                    <h2>Búsqueda Avanzada y Filtros</h2>
+                </div>
+                <div class="grid-2col">
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label">Ingrediente Clave</label>
+                            <input type="text" class="form-input" placeholder="Ej. Trufa, Azafrán, Salmón...">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Rango de Precio</label>
+                            <select class="form-input">
+                                <option>Todos los precios</option>
+                                <option>$10.00 - $25.00</option>
+                                <option>$25.00 - $50.00</option>
+                                <option>$50.00+</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label">Restricciones Dietéticas</label>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 5px;">
+                                <button class="chip chip-mint">Sin Gluten</button>
+                                <button class="chip chip-pink">Keto</button>
+                                <button class="chip chip-cream">Vegetariano</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: AYUDA -->
+        <div id="tab-ayuda" class="content-section">
+            <div class="panel-box">
+                <div class="section-header">
+                    <h2>Asistencia en Mesa</h2>
+                </div>
+                <div class="grid-2col">
+                    <div class="help-card">
+                        <i class="fa-solid fa-bell help-icon"></i>
+                        <h3>Llamar al Mesero</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 5px;">Un mesero asistirá a su mesa en breve.</p>
+                    </div>
+                    <div class="help-card">
+                        <i class="fa-solid fa-receipt help-icon"></i>
+                        <h3>Solicitar Cuenta</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 5px;">Pague con tarjeta, efectivo o pago digital.</p>
+                    </div>
+                    <div class="help-card">
+                        <i class="fa-solid fa-wine-glass help-icon"></i>
+                        <h3>Servicio de Agua / Hielo</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 5px;">Solicite recarga de bebidas básicas.</p>
+                    </div>
+                    <div class="help-card">
+                        <i class="fa-solid fa-wifi help-icon"></i>
+                        <h3>Red Wi-Fi</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 5px;">AuraGuest_5G | Clave: auragold2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: CONTÁCTANOS -->
+        <div id="tab-contactanos" class="content-section">
+            <div class="panel-box">
+                <div class="section-header">
+                    <h2>Contáctanos y Opiniones</h2>
+                </div>
+                <form onsubmit="event.preventDefault(); alert('¡Gracias por tus comentarios!');">
+                    <div class="grid-2col">
+                        <div class="form-group">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-input" placeholder="Tu nombre..." required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Correo Electrónico / Teléfono</label>
+                            <input type="text" class="form-input" placeholder="Contacto..." required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mensaje o Sugerencia</label>
+                        <textarea class="form-textarea" rows="4" placeholder="¿Cómo fue tu experiencia hoy?"></textarea>
+                    </div>
+                    <button type="submit" class="btn-gold-action" style="padding: 12px 30px;"><i class="fa-solid fa-paper-plane"></i> Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SCRIPT DE NAVEGACIÓN INTERACTIVA -->
+    <script>
+        function switchTab(tabId, element) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            document.getElementById('tab-' + tabId).classList.add('active');
+            element.classList.add('active');
+        }
+    </script>
+</body>
+</html>
