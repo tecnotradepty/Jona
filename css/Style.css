@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Efecto de Brillo al Scroll</title>
+    <title>Página con Fondo Personalizado</title>
     <style>
         /* ==========================================
-           ESTILOS GENERALES Y CSS DE LA PÁGINA
+           ESTILOS GENERALES Y DISEÑO DE LA PÁGINA
            ========================================== */
         body {
             margin: 0;
@@ -23,84 +23,99 @@
             overflow: hidden;
         }
 
-        /* REEMPLAZO DE IMAGEN DE FONDO */
+        /* IMAGEN DE FONDO CON VÍNCULO DIRECTO Y ANIMACIÓN DE RESPLANDOR METÁLICO */
         .imagen-fondo {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('tu-nueva-imagen.jpg'); /* Cambia la ruta/nombre de tu nueva imagen aquí */
+            /* URL exacta de tu commit en la carpeta de imágenes */
+            background-image: url('https://raw.githubusercontent.com/tecnotradepty/Jona/2db8c795614a89f54f7108219025f2479d4fb71f/imagenes/884672659_1784755530798634.jpg');
             background-size: cover;
             background-position: center;
-            will-change: transform; /* Optimiza la animación */
+            will-change: transform, filter;
+            animation: animacionFondoCreativa 15s infinite alternate ease-in-out;
         }
 
-        /* EFECTO DE BRILLO VIBRANTE (MODIFICABLE) */
+        /* Animación continua: zoom progresivo con destellos metálicos y ajuste de contraste */
+        @keyframes animacionFondoCreativa {
+            0% {
+                transform: scale(1);
+                filter: brightness(0.9) contrast(1.05);
+            }
+            50% {
+                filter: brightness(1.15) contrast(1.15) sepia(0.15);
+            }
+            100% {
+                transform: scale(1.08);
+                filter: brightness(0.95) contrast(1.1);
+            }
+        }
+
+        /* EFECTO DE BRILLO DORADO AL HACER SCROLL */
         .brillo {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            /* Gradiente de luz dorado/vibrante para resaltar sobre fondos oscuros */
-            background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.35), rgba(0, 0, 0, 0));
+            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.5), rgba(0, 0, 0, 0));
             opacity: 0;
-            transition: opacity 0.3s ease; /* Suaviza la aparición del brillo */
+            transition: opacity 0.3s ease;
             pointer-events: none;
         }
 
         /* SECCIÓN DE CONTENIDO REESTILIZADA */
         .seccion-contenido {
-            height: 200vh; /* Para que haya scroll */
-            padding: 60px 20px;
-            background: linear-gradient(180deg, #121212 0%, #050505 100%);
-            box-shadow: 0px -20px 40px rgba(0,0,0,0.8);
+            height: 200vh; /* Permite espacio para el scroll */
+            padding: 80px 30px;
+            background: linear-gradient(180deg, rgba(10, 10, 10, 0.95) 0%, #050505 100%);
+            box-shadow: 0px -20px 40px rgba(0, 0, 0, 0.9);
             position: relative;
             z-index: 2;
+            backdrop-filter: blur(8px);
         }
 
         .seccion-contenido h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: #d4af37; /* Tono dorado */
             margin-bottom: 20px;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
         }
 
         .seccion-contenido p {
             font-size: 1.2rem;
-            color: #cccccc;
+            color: #e0e0e0;
             max-width: 800px;
-            line-height: 1.6;
+            line-height: 1.8;
         }
     </style>
 </head>
 <body>
+
+    <!-- CONTENEDOR DE LA IMAGEN DE FONDO -->
     <div class="contenedor-imagen">
         <div class="imagen-fondo"></div>
-        <div class="brillo"></div>
+        <div class="brillo" id="brillo"></div>
     </div>
 
-    <div class="seccion-contenido">
-        <h1>Contenido de la página</h1>
-        <p>Desplázate hacia abajo para ver el efecto.</p>
-    </div>
+    <!-- SECCIÓN DE CONTENIDO PRINCIPAL -->
+    <main class="seccion-contenido">
+        <h1>Bienvenido a la Experiencia</h1>
+        <p>Desplaza la página hacia abajo para interactuar con la interfaz y observar los efectos dinámicos de luz y movimiento metálico sobre el fondo.</p>
+    </main>
 
+    <!-- SCRIPT OPCIONAL PARA ACTIVAR EL EFECTO DE BRILLO CON SCROLL -->
     <script>
-        const imagenFondo = document.querySelector('.imagen-fondo');
-        const brillo = document.querySelector('.brillo');
-
         window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            const alturaVentana = window.innerHeight;
-
-            // Efecto Parallax
-            imagenFondo.style.transform = `translateY(${scrollY * 0.5}px)`; // Ajusta el factor de parallax (0.5)
-
-            // Efecto de Brillo
-            const opacidadBrillo = Math.min(1, scrollY / alturaVentana); // Brillo máximo a 100% de la altura de la ventana
-            brillo.style.opacity = opacidadBrillo;
+            const brillo = document.getElementById('brillo');
+            const scrollPos = window.scrollY;
+            // Ajusta la opacidad según el desplazamiento vertical
+            brillo.style.opacity = Math.min(scrollPos / 400, 0.8);
         });
     </script>
+
 </body>
 </html>
