@@ -16,38 +16,44 @@ body {
     overflow: hidden;
 }
 
-/* IMAGEN DE FONDO CON ANIMACIÓN DE ZOOM */
+/* IMAGEN DE FONDO CON VÍNCULO DIRECTO Y ANIMACIÓN DE RESPLANDOR METÁLICO */
 .imagen-fondo {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('https://raw.githubusercontent.com/tecnotradepty/Jona/main/imagenes/884672659_1784755530798634.jpg');
+    /* URL exacta de tu commit en la carpeta de imágenes */
+    background-image: url('https://raw.githubusercontent.com/tecnotradepty/Jona/2db8c795614a89f54f7108219025f2479d4fb71f/imagenes/884672659_1784755530798634.jpg');
     background-size: cover;
     background-position: center;
-    will-change: transform;
-    animation: zoomLento 12s infinite alternate ease-in-out;
+    will-change: transform, filter;
+    animation: animacionFondoCreativa 15s infinite alternate ease-in-out;
 }
 
-/* Animación continua de fondo (Zoom suave) */
-@keyframes zoomLento {
+/* Animación continua: zoom progresivo con destellos metálicos y ajuste de contraste */
+@keyframes animacionFondoCreativa {
     0% {
         transform: scale(1);
+        filter: brightness(0.9) contrast(1.05);
+    }
+    50% {
+        filter: brightness(1.15) contrast(1.15) sepia(0.15);
     }
     100% {
-        transform: scale(1.06);
+        transform: scale(1.08);
+        filter: brightness(0.95) contrast(1.1);
     }
 }
 
-/* EFECTO DE BRILLO VIBRANTE AL SCROLL */
+/* EFECTO DE BRILLO DORADO AL HACER SCROLL */
 .brillo {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.45), rgba(0, 0, 0, 0));
+    background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.5), rgba(0, 0, 0, 0));
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
