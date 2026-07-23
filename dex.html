@@ -1,71 +1,243 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kiosco Gastronómico Panameño - Menú & Reseñas</title>
-  <style>
-    :root {
-      --gold-gradient: linear-gradient(135deg, #e6c875 0%, #d4af37 50%, #aa7c11 100%);
-      --bg-dark: #0f1115;
-      --card-bg: rgba(255, 255, 255, 0.05);
-      --card-border: rgba(212, 175, 55, 0.2);
-      --text-light: #f5f5f7;
-      --text-muted: #a1a1a6;
-      
-      /* Pasteles */
-      --pastel-pink: #ffd1dc;
-      --pastel-peach: #ffe5b4;
-      --pastel-cream: #fdfd96;
-      --pastel-lavender: #e6e6fa;
-      --pastel-green: #c1e1c1;
-      --pastel-text: #2d2d2d;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Gastronómico Auténtico de Panamá</title>
+    <style>
+        /* ==========================================
+           ESTILOS GENERALES Y DISEÑO LIQUID METAL / GOLD
+           ========================================== */
+        :root {
+            --dorado-metal: #d4af37;
+            --dorado-brillo: #fff3a3;
+            --negro-fondo: #0a0a0a;
+            --gris-carbon: #141414;
+            --texto-claro: #f0f0f0;
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--negro-fondo);
+            color: var(--texto-claro);
+            overflow-x: hidden;
+        }
 
-    body {
-      background-color: var(--bg-dark);
-      color: var(--text-light);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
-    }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(180deg, rgba(20,20,20,0.9) 0%, rgba(10,10,10,1) 100%);
+            border-bottom: 2px solid var(--dorado-metal);
+        }
 
-    /* Header */
-    header {
-      padding: 1.2rem 2rem;
-      background: rgba(15, 17, 21, 0.9);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--card-border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
+        h1 {
+            font-size: 2.5rem;
+            color: var(--dorado-metal);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0 0 10px 0;
+            text-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+        }
 
-    .brand-logo {
-      font-size: 1.5rem;
-      font-weight: 800;
-      background: var(--gold-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 1px;
-    }
+        p.subtitulo {
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            margin: 0;
+        }
 
-    .controls {
-      display: flex;
-      gap: 1rem;
+        .grid-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 40px 5%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .tarjeta-platillo {
+            background-color: var(--gris-carbon);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .tarjeta-platillo:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.25);
+            border-color: var(--dorado-metal);
+        }
+
+        .contenedor-img {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .contenedor-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .tarjeta-platillo:hover .contenedor-img img {
+            transform: scale(1.08);
+        }
+
+        .etiqueta-region {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(10, 10, 10, 0.85);
+            color: var(--dorado-metal);
+            border: 1px solid var(--dorado-metal);
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            border-radius: 20px;
+            font-weight: bold;
+            backdrop-filter: blur(4px);
+        }
+
+        .info-platillo {
+            padding: 20px;
+        }
+
+        .nombre-platillo {
+            font-size: 1.3rem;
+            color: var(--dorado-metal);
+            margin: 0 0 8px 0;
+        }
+
+        .descripcion-platillo {
+            font-size: 0.9rem;
+            color: #cccccc;
+            line-height: 1.5;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Sabores Auténticos de Panamá</h1>
+        <p class="subtitulo">Selección Gastronómica Criolla por Región y Tradición</p>
+    </header>
+
+    <main class="grid-menu">
+
+        <!-- PLATILLO: CHICHEME CHORRERANO -->
+        <article class="tarjeta-platillo">
+            <div class="contenedor-img">
+                <span class="etiqueta-region">Panamá Oeste</span>
+                <!-- Bebida tradicional a base de maíz pilado, leche y canela -->
+                <img src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=800&q=80" alt="Chicheme Chorrerano Tradicional">
+            </div>
+            <div class="info-platillo">
+                <h2 class="nombre-platillo">Chicheme Chorrerano</h2>
+                <p class="descripcion-platillo">Bebida artesanal a base de maíz pilado tierno, leche entera, canela, vainilla y un toque de nuez moscada.</p>
+            </div>
+        </article>
+
+        <!-- PLATILLO: SANCOCHO PANAMEÑO -->
+        <article class="tarjeta-platillo">
+            <div class="contenedor-img">
+                <span class="etiqueta-region">Nacional</span>
+                <!-- Sopa criolla de gallina dura con ñame y culantro -->
+                <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80" alt="Sancocho Panameño de Gallina">
+            </div>
+            <div class="info-platillo">
+                <h2 class="nombre-platillo">Sancocho de Gallina Criolla</h2>
+                <p class="descripcion-platillo">El plato nacional por excelencia: caldo espeso de gallina de patio con ñame baboso, abundante culantro fresco y orégano.</p>
+            </div>
+        </article>
+
+        <!-- PLATILLO: CORVINA FRITA CON PATACONES -->
+        <article class="tarjeta-platillo">
+            <div class="contenedor-img">
+                <span class="etiqueta-region">Pacífico / Caribe</span>
+                <!-- Pescado entero frito con plátanos verdes fritos -->
+                <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80" alt="Corvina Frita con Patacones">
+            </div>
+            <div class="info-platillo">
+                <h2 class="nombre-platillo">Corvina Frita con Patacones</h2>
+                <p class="descripcion-platillo">Pescado entero sazonado con ajo y limón, acompañado de patacones crujientes de plátano verde y salsa criolla.</p>
+            </div>
+        </article>
+
+        <!-- PLATILLO: HOJALDRAS CON QUESO O ROPA VIEJA -->
+        <article class="tarjeta-platillo">
+            <div class="contenedor-img">
+                <span class="etiqueta-region">Desayuno Típico</span>
+                <!-- Masa frita crujiente criolla -->
+                <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80" alt="Hojaldras Criollas">
+            </div>
+            <div class="info-platillo">
+                <h2 class="nombre-platillo">Hojaldra Criolla con Salchicha</h2>
+                <p class="descripcion-platillo">Masa frita dorada y esponjosa, servida caliente con salchichas en salsa de tomate criollo o queso blanco nacional.</p>
+            </div>
+        </article>
+
+        <!-- PLATILLO: CARIMAÑOLAS DE YUCA -->
+        <article class="tarjeta-platillo">
+            <div class="contenedor-img">
+                <span class="etiqueta-region">Entrada Típica</span>
+                <!-- Fritura de yuca rellena de carne molida sazonada -->
+                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80" alt="Carimañolas de Yuca">
+            </div>
+            <div class="info-platillo">
+                <h2 class="nombre-platillo">Carimañolas de Yuca</h2>
+                <p class="descripcion-platillo">Pasteles fritos de masa de yuca suave, rellenos de carne picada sazonada con ají dulce, cebolla y achiote.</p>
+            </div>
+        </article>
+
+        <!-- PLATILLO: ARROZ CON GUANDÚ Y COCO -->
+        <article class="tarjeta-platillo">
+            <div class="contenedor-img">
+                <span class="etiqueta-region">Colón / Herrera</span>
+                <!-- Arroz criollo preparado con leche de coco y guandú -->
+                <img src="https://images.unsplash.com/photo-1596560548464-f010549b84d7?auto=format&fit=crop&w=800&q=80" alt="Arroz con Guandú y Coco">
+            </div>
+            <div class="info-platillo">
+                <h2 class="nombre-platillo">Arroz con Guandú y Coco</h2>
+                <p class="descripcion-platillo">Arroz sazonado con leche de coco natural y guandú oloroso, infaltable en las festividades panameñas.</p>
+            </div>
+        </article>
+
+        <!-- PLATILLO: TAMAL EN HOJA -->
+        <article class="tarjeta-platillo">
+            <div class="contenedor-img">
+                <span class="etiqueta-region">Tradición Festiva</span>
+                <!-- Masa de maíz envuelta en hoja de bijao/plátano -->
+                <img src="https://images.unsplash.com/photo-1615870216519-2f9fa575fa5c?auto=format&fit=crop&w=800&q=80" alt="Tamal Panameño en Hoja">
+            </div>
+            <div class="info-platillo">
+                <h2 class="nombre-platillo">Tamal Panameño en Hoja de Bijao</h2>
+                <p class="descripcion-platillo">Masa de maíz sazonada con achiote y sofrito, rellena de pollo o cerdo, pasas, aceitunas y ciruelas, envuelta y cocida en hojas tradicionales.</p>
+            </div>
+        </article>
+
+        <!-- PLATILLO: CHICHA DE SARIL CON JENGIBRE -->
+        <article class="tarjeta-platillo">
+            <div class="contenedor-img">
+                <span class="etiqueta-region">Bebida Típica</span>
+                <!-- Bebida de la flor de saril (flor de Jamaica panameña) -->
+                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80" alt="Chicha de Saril con Jengibre">
+            </div>
+            <div class="info-platillo">
+                <h2 class="nombre-platillo">Chicha de Saril con Jengibre</h2>
+                <p class="descripcion-platillo">Infusión fría refrescante elaborada con cálices de saril (flor de Jamaica), especias picantes de jengibre y azúcar de caña.</p>
+            </div>
+        </article>
+
+    </main>
+
+</body>
+</html>
       align-items: center;
       flex-wrap: wrap;
     }
