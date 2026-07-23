@@ -3,69 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página con Fondo Personalizado</title>
+    <title>Menú Gastronómico de Panamá - Experiencia Metal Líquido</title>
     <style>
         /* ==========================================
-           ESTILOS GENERALES Y DISEÑO DE LA PÁGINA
+           1. ESTILOS BASE Y FONDO DESDE TU REPOSITO
            ========================================== */
-        body {
+        :root {
+            --dorado-metal: #d4af37;
+            --dorado-brillo: #fff3a3;
+            --negro-transparente: rgba(10, 10, 10, 0.88);
+            --gris-carbon: rgba(20, 20, 20, 0.92);
+            --texto-claro: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
-            overflow-x: hidden; /* Evita el scroll horizontal */
+            padding: 0;
+        }
+
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #0b0b0b;
-            color: #ffffff;
-        }
-
-        .contenedor-imagen {
+            color: var(--texto-claro);
+            overflow-x: hidden;
             position: relative;
-            width: 100%;
-            height: 100vh; /* Altura de la ventana */
-            overflow: hidden;
+            min-height: 100vh;
         }
 
-        /* IMAGEN DE FONDO CON VÍNCULO DIRECTO Y ANIMACIÓN DE RESPLANDOR METÁLICO */
-        .imagen-fondo {
-            position: absolute;
+        /* CAPA DE LA IMAGEN DE FONDO OFICIAL DE TU GITHUB */
+        .capa-fondo-repositorio {
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            /* URL exacta de tu commit en la carpeta de imágenes */
+            width: 100vw;
+            height: 100vh;
+            /* Tu URL exacta de GitHub Raw */
             background-image: url('https://raw.githubusercontent.com/tecnotradepty/Jona/2db8c795614a89f54f7108219025f2479d4fb71f/imagenes/884672659_1784755530798634.jpg');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
             will-change: transform, filter;
             animation: animacionFondoCreativa 15s infinite alternate ease-in-out;
         }
 
-        /* Animación continua: zoom progresivo con destellos metálicos y ajuste de contraste */
+        /* EFECTO BRILLO DORADO REACTIVO AL SCROLL */
+        .brillo-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.35), rgba(0, 0, 0, 0.85));
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        /* ANIMACIÓN DE RESPLANDOR METÁLICO CONTINUO */
         @keyframes animacionFondoCreativa {
             0% {
                 transform: scale(1);
-                filter: brightness(0.9) contrast(1.05);
+                filter: brightness(0.85) contrast(1.05);
             }
             50% {
-                filter: brightness(1.15) contrast(1.15) sepia(0.15);
+                filter: brightness(1.1) contrast(1.15) sepia(0.12);
             }
             100% {
-                transform: scale(1.08);
-                filter: brightness(0.95) contrast(1.1);
+                transform: scale(1.06);
+                filter: brightness(0.9) contrast(1.1);
             }
         }
 
-        /* EFECTO DE BRILLO DORADO AL HACER SCROLL */
-        .brillo {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.5), rgba(0, 0, 0, 0));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
+        /* ==========================================
+           2. ENCABEZADO Y NAVEGACIÓN DORSAL
+           ========================================== */
+        header {
+            text-align: center;
+            padding: 50px 20px 30px;
+            background: linear-gradient(180deg, rgba(5,5,5,0.95) 0%, rgba(15,15,15,0.8) 100%);
+            border-bottom: 2px solid var(--dorado-metal);
+            backdrop-filter: blur(8px);
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
+        h1 {
+            font-size: 2.6rem;
+            color: var(--dorado-metal);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        p.subtitulo {
+            font-size: 1.1rem;
+            color: #d0d0d0;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ==========================================
+           3. Malla Grid y Tarjetas Sincronizadas
+           ========================================== */
+        .contenedor-principal {
+            position: relative;
+            z-index: 5;
+            padding: 40px 20px 80px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .grid-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .tarjeta-platillo {
+            background: var(--gris-carbon);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 14px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tarjeta-platillo:hover {
+            transform: translateY(-8px);
+            border-color: var(--dorado-metal);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .contenedor-img {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .contenedor-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .tarjeta-platillo:hover .contenedor-img img {
+            transform: scale(1.08);
+        }
+
+        .etiqueta-region {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(10, 10, 10, 0.85);
+            color: var(--dorado-metal);
+            border: 1px solid var(--dorado-metal);
+            padding: 5px 12px;
+            font-size: 0.8rem;
+            border-radius: 20px;
+            font-weight: bold;
+            backdrop-filter: blur(4px);
+            z-index: 2;
+        }
+
+        .info-platillo {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .nombre-platillo {
+            font-size: 1.4rem;
+            color: var(--dorado-metal);
+            margin-bottom: 10px;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+        }
+
+        .descripcion-platillo {
+            font-size: 0.95rem;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FONDO FIJO CON ANIMACIÓN METÁLICA (IMAGEN DE TU REPOSINORIO) -->
+    <div class="capa-fondo-repositorio"></div>
+    <div class="brillo-overlay" id="brilloOverlay"></div>
+
+    <!-- ENCABEZADO -->
+    <header>
+        <h1>Sabores Auténticos de Panamá</h1>
+        <p class="subtitulo">Selección Gastronómica Criolla Sincronizada con Nuestras Tradiciones</p>
+    </header>
+
+    <!-- SECCIÓN DE CONTENIDO EN GRID -->
+    <main class="contenedor-principal">
+        <section class="grid-menu">
+
+            <!-- 1. CHICHEME CHORRERANO -->
+            <article class="tarjeta-platillo">
+                <div class="contenedor-img">
+                    <span class="etiqueta-region">Panamá Oeste</span>
+                    <img src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=800&q=80" alt="Chicheme Chorrerano Tradicional">
+                </div>
+                <div class="info-platillo">
+                    <h2 class="nombre-platillo">Chicheme Chorrerano</h2>
+                    <p class="descripcion-platillo">Bebida artesanal de maíz pilado tierno cocido suavemente con leche entera, canela, vainilla y un toque distintivo de nuez moscada.</p>
+                </div>
+            </article>
+
+            <!-- 2. SANCOCHO PANAMEÑO -->
+            <article class="tarjeta-platillo">
+                <div class="contenedor-img">
+                    <span class="etiqueta-region">Nacional</span>
+                    <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80" alt="Sancocho Panameño de Gallina">
+                </div>
+                <div class="info-platillo">
+                    <h2 class="nombre-platillo">Sancocho de Gallina Criolla</h2>
+                    <p class="descripcion-platillo">Sopa de tradición con gallina de patio, espesada con ñame baboso, abundante culantro fresco y sazonada con orégano.</p>
+                </div>
+            </article>
+
+            <!-- 3. CORVINA FRITA CON PATACONES -->
+            <article class="tarjeta-platillo">
+                <div class="contenedor-img">
+                    <span class="etiqueta-region">Pacífico / Caribe</span>
+                    <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80" alt="Corvina Frita con Patacones">
+                </div>
+                <div class="info-platillo">
+                    <h2 class="nombre-platillo">Corvina Frita con Patacones</h2>
+                    <p class="descripcion-platillo">Pescado fresco sazonado al estilo criollo, frito crujiente y servido con patacones de plátano verde y limón.</p>
+                </div>
+            </article>
+
+            <!-- 4. HOJALDRA DE DESAYUNO -->
+            <article class="tarjeta-platillo">
+                <div class="contenedor-img">
+                    <span class="etiqueta-region">Desayuno Típico</span>
+                    <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80" alt="Hojaldras Criollas">
+                </div>
+                <div class="info-platillo">
+                    <h2 class="nombre-platillo">Hojaldra Criolla con Salchicha</h2>
+                    <p class="descripcion-platillo">Masa tradicional frita dorada y esponjosa, servida caliente con salchichas guisadas en salsa dulce de tomate.</p>
+                </div>
+            </article>
+
+            <!-- 5. CARIMAÑOLAS DE YUCA -->
+            <article class="tarjeta-platillo">
+                <div class="contenedor-img">
+                    <span class="etiqueta-region">Entrada Típica</span>
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80" alt="Carimañolas de Yuca">
+                </div>
+                <div class="info-platillo">
+                    <h2 class="nombre-platillo">Carimañolas de Yuca</h2>
+                    <p class="descripcion-platillo">Fritura de masa de yuca sazonada, rellena de carne molida frita con ají dulce, cebolla y sofrito panameño.</p>
+                </div>
+            </article>
+
+            <!-- 6. ARROZ CON GUANDÚ Y COCO -->
+            <article class="tarjeta-platillo">
+                <div class="contenedor-img">
+                    <span class="etiqueta-region">Colón / Herrera</span>
+                    <img src="https://images.unsplash.com/photo-1596560548464-f010549b84d7?auto=format&fit=crop&w=800&q=80" alt="Arroz con Guandú y Coco">
+                </div>
+                <div class="info-platillo">
+                    <h2 class="nombre-platillo">Arroz con Guandú y Coco</h2>
+                    <p class="descripcion-platillo">Arroz autóctono cocido en leche de coco fresca con guandú oloroso, ideal para acompañar carnes o mariscos.</p>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <!-- SCRIPT PARA MANEJAR LA LUZ Y EL BRILLO CON EL SCROLL -->
+    <script>
+        window.addEventListener('scroll', () => {
+            const brillo = document.getElementById('brilloOverlay');
+            const scrollPos = window.scrollY;
+            // Eleva progresivamente el brillo dorado conforme el usuario navega
+            let nuevaOpacidad = 0.3 + (scrollPos / 800);
+            brillo.style.opacity = Math.min(nuevaOpacidad, 0.75);
+        });
+    </script>
+</body>
+</html>
         /* SECCIÓN DE CONTENIDO REESTILIZADA */
         .seccion-contenido {
             height: 200vh; /* Permite espacio para el scroll */
