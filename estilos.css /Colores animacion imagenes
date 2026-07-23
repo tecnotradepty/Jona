@@ -1,86 +1,121 @@
-/* ==========================================
-   ESTILOS GENERALES Y DISEÑO DE LA PÁGINA
-   ========================================== */
-body {
-    margin: 0;
-    overflow-x: hidden; /* Evita el scroll horizontal */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #0b0b0b;
-    color: #ffffff;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página con Fondo Personalizado</title>
+    <style>
+        /* ==========================================
+           ESTILOS GENERALES Y DISEÑO DE LA PÁGINA
+           ========================================== */
+        body {
+            margin: 0;
+            overflow-x: hidden; /* Evita el scroll horizontal */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b0b0b;
+            color: #ffffff;
+        }
 
-.contenedor-imagen {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* Altura de la ventana */
-    overflow: hidden;
-}
+        .contenedor-imagen {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Altura de la ventana */
+            overflow: hidden;
+        }
 
-/* IMAGEN DE FONDO CON VÍNCULO DIRECTO Y ANIMACIÓN DE RESPLANDOR METÁLICO */
-.imagen-fondo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* URL exacta de tu commit en la carpeta de imágenes */
-    background-image: url('https://raw.githubusercontent.com/tecnotradepty/Jona/2db8c795614a89f54f7108219025f2479d4fb71f/imagenes/884672659_1784755530798634.jpg');
-    background-size: cover;
-    background-position: center;
-    will-change: transform, filter;
-    animation: animacionFondoCreativa 15s infinite alternate ease-in-out;
-}
+        /* IMAGEN DE FONDO CON VÍNCULO DIRECTO Y ANIMACIÓN DE RESPLANDOR METÁLICO */
+        .imagen-fondo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* URL exacta de tu commit en la carpeta de imágenes */
+            background-image: url('https://raw.githubusercontent.com/tecnotradepty/Jona/2db8c795614a89f54f7108219025f2479d4fb71f/imagenes/884672659_1784755530798634.jpg');
+            background-size: cover;
+            background-position: center;
+            will-change: transform, filter;
+            animation: animacionFondoCreativa 15s infinite alternate ease-in-out;
+        }
 
-/* Animación continua: zoom progresivo con destellos metálicos y ajuste de contraste */
-@keyframes animacionFondoCreativa {
-    0% {
-        transform: scale(1);
-        filter: brightness(0.9) contrast(1.05);
-    }
-    50% {
-        filter: brightness(1.15) contrast(1.15) sepia(0.15);
-    }
-    100% {
-        transform: scale(1.08);
-        filter: brightness(0.95) contrast(1.1);
-    }
-}
+        /* Animación continua: zoom progresivo con destellos metálicos y ajuste de contraste */
+        @keyframes animacionFondoCreativa {
+            0% {
+                transform: scale(1);
+                filter: brightness(0.9) contrast(1.05);
+            }
+            50% {
+                filter: brightness(1.15) contrast(1.15) sepia(0.15);
+            }
+            100% {
+                transform: scale(1.08);
+                filter: brightness(0.95) contrast(1.1);
+            }
+        }
 
-/* EFECTO DE BRILLO DORADO AL HACER SCROLL */
-.brillo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.5), rgba(0, 0, 0, 0));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
+        /* EFECTO DE BRILLO DORADO AL HACER SCROLL */
+        .brillo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.5), rgba(0, 0, 0, 0));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
 
-/* SECCIÓN DE CONTENIDO REESTILIZADA */
-.seccion-contenido {
-    height: 200vh; /* Permite espacio para el scroll */
-    padding: 80px 30px;
-    background: linear-gradient(180deg, rgba(10, 10, 10, 0.95) 0%, #050505 100%);
-    box-shadow: 0px -20px 40px rgba(0, 0, 0, 0.9);
-    position: relative;
-    z-index: 2;
-    backdrop-filter: blur(8px);
-}
+        /* SECCIÓN DE CONTENIDO REESTILIZADA */
+        .seccion-contenido {
+            height: 200vh; /* Permite espacio para el scroll */
+            padding: 80px 30px;
+            background: linear-gradient(180deg, rgba(10, 10, 10, 0.95) 0%, #050505 100%);
+            box-shadow: 0px -20px 40px rgba(0, 0, 0, 0.9);
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(8px);
+        }
 
-.seccion-contenido h1 {
-    font-size: 2.8rem;
-    color: #d4af37; /* Tono dorado */
-    margin-bottom: 20px;
-    letter-spacing: 1.5px;
-    text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-}
+        .seccion-contenido h1 {
+            font-size: 2.8rem;
+            color: #d4af37; /* Tono dorado */
+            margin-bottom: 20px;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
 
-.seccion-contenido p {
-    font-size: 1.2rem;
-    color: #e0e0e0;
-    max-width: 800px;
-    line-height: 1.8;
-}
+        .seccion-contenido p {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CONTENEDOR DE LA IMAGEN DE FONDO -->
+    <div class="contenedor-imagen">
+        <div class="imagen-fondo"></div>
+        <div class="brillo" id="brillo"></div>
+    </div>
+
+    <!-- SECCIÓN DE CONTENIDO PRINCIPAL -->
+    <main class="seccion-contenido">
+        <h1>Bienvenido a la Experiencia</h1>
+        <p>Desplaza la página hacia abajo para interactuar con la interfaz y observar los efectos dinámicos de luz y movimiento metálico sobre el fondo.</p>
+    </main>
+
+    <!-- SCRIPT OPCIONAL PARA ACTIVAR EL EFECTO DE BRILLO CON SCROLL -->
+    <script>
+        window.addEventListener('scroll', () => {
+            const brillo = document.getElementById('brillo');
+            const scrollPos = window.scrollY;
+            // Ajusta la opacidad según el desplazamiento vertical
+            brillo.style.opacity = Math.min(scrollPos / 400, 0.8);
+        });
+    </script>
+
+</body>
+</html>
